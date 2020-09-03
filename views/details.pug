@@ -1,0 +1,50 @@
+doctype html
+head
+  title
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z' crossorigin='anonymous')
+  
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  link(type='text/css' rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700')
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand(href='#') EventKing
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+        a.nav-link(href='/')
+          | Home 
+          span.sr-only (current)
+    .mx-2
+      a.btn.btn-success(href='/property' role='button') Add Property
+      
+#detailcontainer.container
+  .row
+    .col-md-8
+      h3 #{A[0].venue}
+      hr
+      #myCarousel.carousel.slide(data-ride='carousel')
+        // Indicators
+        ol.carousel-indicators
+          li.active(data-target='#myCarousel' data-slide-to='0')
+          li(data-target='#myCarousel' data-slide-to='1')
+          li(data-target='#myCarousel' data-slide-to='2')
+        // Wrapper for slides
+        .carousel-inner
+          .item.active
+            img(src='http://res.cloudinary.com/dpmarswfv/image/upload/v1503959885/xr0qjeql276njrbdonbm.jpg' style='width:100%;')
+      hr
+    .col-md-4
+      #pricingpanel.panel.panel-primary
+        .panel-heading Pricing Summary
+        .panel-body Start Date : #{A[0].date} 
+        .panel-body No of Days : #{day}
+        .panel-body(name='price') Price Per Day :#{A[0].price}
+        -var cost=A[0].price*day
+        .panel-body(name='total')  Total Cost(rs) : #{cost}
+        .panel-body Occupancy :#{A[0].Occupancy}
+        .panel-body  Amenities: wifi:#{A[0].wifi}, TV:#{A[0].tv}, parking:#{A[0].parking}, pool:#{A[0].pool}
+        .panel-body(name='address') Address : #{A[0].address}
+        .panel-body(name='contact') Contact: #{A[0].Contact}
+        .panel-body(name='email') Email: #{A[0].email}

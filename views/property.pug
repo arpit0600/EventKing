@@ -1,0 +1,101 @@
+doctype html
+head
+  // Required meta tags
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  // Bootstrap CSS
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z' crossorigin='anonymous')
+  title Event King
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand(href='#') EventKing
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+        a.btn.btn-dark(onclick="home()" role='button') 
+          | Home 
+          span.sr-only (current)
+    .mx-2
+      a.btn.btn-success(onclick="addProperty()" role='button') Add Property
+      
+.propertyform(style="background-image: url('rent.jpg');")
+  form( method='POST')
+    .form-row
+      .form-group.col-md-6
+        label(for='inputVenueName') Venue Name
+        input#inputVenueName.form-control(name='venue' type='Text')
+      .form-group.col-md-6
+        label(for='inputEmail4') Email
+        input#inputEmail4.form-control(name='email' type='email')
+      .form-row
+        .col
+          label(for='inputOccupancy') Occupancy
+          select#inputOccupancy.form-control(name='Occupancy')
+            option(selected='') 50-100
+            option 100-200
+            option 200-300
+            option 300-400
+            option 400-500
+            option 500-600
+            option 600-700
+            option 700-800
+            option 800-900
+            option 1000+
+        .col
+          label(for='inputContact') Contact
+          input#inputContact.form-control(name='Contact' type="number")
+    .amenities
+      label(for='inputamenities') Amenities
+      .form-check
+        input#wifi.form-check-wifi(name='wifi' type='checkbox' )
+        label.form-check-label(for='wifi')
+          | wifi
+      .form-check
+        input#TV.form-check-TV(name='tv' type='checkbox'  )
+        label.form-check-label(for='TV')
+          | TV
+      .form-check
+        input#parking.form-check-parking(name='parking' type='checkbox'  )
+        label.form-check-label(for='parking')
+          | parking
+      .form-check
+        input#pool.form-check-pool(name='pool' type='checkbox' )
+        label.form-check-label(for='pool')
+          | pool
+    .form-group
+      label(for='inputAddress') Address
+      input#inputAddress.form-control(name='address' type='text' placeholder='33/49 varun path')
+    .form-row
+      .form-group.col-md-4
+        label(for='inputCity') City
+        input#inputCity.form-control(name='city' type='text' placeholder='Jaipur')
+      .form-group.col-md-4
+        label(for='inputState') State
+        input#inputState.form-control(name='state' type='text' placeholder='Rajasthan')
+      .form-group.col-md-4
+        label(for='inputZip') Zip
+        input#inputZip.form-control(name='zip' type="number" placeholder='302015')
+    .form-row
+      .form-group.col-md-4
+        label(for='inputPrice') Price Per Day(Rs)
+        input#inputPrice.form-control(name='price' type="number" placeholder='2000')
+      .form-group.col-md-4
+        label(for='inputDate') Date of availablility
+        input#inputPrice.form-control(name='date' type="date" )
+      
+
+        
+    button.btn.btn-dark Submit
+// Optional JavaScript
+// jQuery first, then Popper.js, then Bootstrap JS
+script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN' crossorigin='anonymous')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV' crossorigin='anonymous')
+script.
+      function addProperty(){
+        window.location.href = '/property'
+      }
+      function home(){
+        window.location.href='/'
+      }

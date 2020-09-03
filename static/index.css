@@ -1,0 +1,30 @@
+.bgimage {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+  
+  
+  /* Centered text */
+  .centered {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .flex-container {
+    display: flex;
+    justify-content: space-evenly;
+    color:whitesmoke;
+    
+
+  }
+  .btn-success{
+      margin-left: 5px;
+      margin-right: 5px;
+  }
+.containerRight{
+  display: flex;
+  flex-direction: row;
+}
+  

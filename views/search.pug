@@ -1,0 +1,74 @@
+doctype html
+head
+  title List properties
+  script(src='https://apis.mapmyindia.com/advancedmaps/v1/<API_KEY>/map_load?v=1.3')
+  link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z' crossorigin='anonymous')
+  link(type='text/css' rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700')
+  link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  link(rel='stylesheet' type='text/css' href='index.css')
+  style.
+    #firstmap {
+    height: 500px;
+    width: 500px;
+    float:right;
+
+    }
+
+    
+  // <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+  a.navbar-brand(href='#') EventKing
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+        a.nav-link(href="/")
+          | Home 
+          span.sr-only (current)
+    .mx-2
+      a.btn.btn-success(href="/property" role='button') Add Property
+      
+.containerRight
+  .col-md-6
+    .row
+        each A in results
+            -var a=A.lat;
+            -var b=A.long;
+            -var arr=[a,b]
+            -id1=A._id;
+            
+            -var h='details';
+            -h+='/'+A.id;
+            
+
+
+
+
+            .col-md-3
+                img.w3-hover-opacity(src='https://nhs-dynamic.secure.footprint.net//Images/Homes/MeritageHom/15949367-150819.jpg?maxwidth=500&maxheight=333&format=jpg' style='width:100%')
+            .col-md-9
+                div
+                h3 Event Sapce
+                div
+                ul
+                    li Venue Name: #{A.venue}
+                    li Occupancy:  #{A.occupancy}
+                    li Amenities: wifi:#{A.wifi}, speakers:#{A.tv}, parking:#{A.parking}, pool:#{A.pool} 
+                    li Price per day:#{A.price}rs
+                a.btn.btn-success( href=h role='button') Details
+            
+
+  #firstmap.map.col-md-6
+  script.
+    var map = new MapmyIndia.Map("firstmap", { center: [19.07, 77.23], zoomControl: true, hybrid: true });
+    L.marker([19.07, 77.23]).addTo(map);
+
+
+
+
+ 
+
+
+
