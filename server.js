@@ -1,10 +1,14 @@
 //importing and initialising the files
 const express = require("express");
-const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");//to parse json form the post req
 const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
 var ObjectID = require("mongodb").ObjectID;
+const bcrypt= require("bcrypt");
+const saltRounds = 10;
+
+//mongo connection
 mongoose.connect("mongodb://localhost/eventking", {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -13,6 +17,14 @@ mongoose.connect("mongodb://localhost/eventking", {
 //DATABSE INITIALISATION
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
+
+var userSchema={
+  email:String,
+  password:String
+};
+var User=new mongoose.model("User",userSchema);
+
+
 
 //making schema for properties listed
 var propSchema = new mongoose.Schema({
@@ -45,6 +57,66 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //views folder for rendering pug files
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+
+
+//get req for home
+app.get("/home",(req,res)=>{
+  res.render("home");
+});
+
+app.get("/login",(req,res)=>{
+  res.render("login");
+});
+
+
+app.get("/register",(req,res)=>{
+  res.render("register");
+});
+
+app.post("/register",(req,res)=>{
+  bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+    const newUser=new User({
+      email:req.body.username,
+      password:hash
+    });
+    console.log(newUser);
+    newUser.save(function(err){
+      if(err){
+        console.log(err);
+      }
+      else{
+        res.render("index");
+      }
+    });
+});
+});
+
+app.post("/login",(req,res)=>{
+  
+  const username=req.body.username;
+  const password=req.body.password;
+  User.findOne({email:username}, function(err,foundUser){
+    console.log("rferferferf");
+    if(err){
+      console.log(err);
+    }
+    else{
+      if(foundUser){
+        
+        bcrypt.compare(password, foundUser.password, function(err, result) {
+          if(result==true){
+            res.render("index");
+
+          }
+      });
+        
+      }
+    }
+  });
+});
+
+
+
 
 // starting ROUTING FOR PROPERTY PAGE
 app.get("/property", (req, res) => {

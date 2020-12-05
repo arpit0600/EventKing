@@ -14,42 +14,26 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   #navbarSupportedContent.collapse.navbar-collapse
     ul.navbar-nav.mr-auto
       li.nav-item.active
-        a.btn.btn-dark(onclick="home()" role='button')
+        a.nav-link(href='index.html')
           | Home 
           span.sr-only (current)
-    .mx-2
-
-      a(href="/home").btn.btn-success( role='button') Logout
-      a.btn.btn-success(onclick="addProperty()" role='button') Add Property
-     
-.bgimage
-  img(src='LP2.jpg' alt='Snow' style='width:100%;')
-  .centered
-    form( method='POST')
-      h1 Find Exquisite Places To Host Your Event !
-      .form-row
-        .form-group.col-md-4
-          label(for='inputCity') City
-          input#city.form-control(name='city' type='Text')
-        .form-group.col-md-4
-          label(for='inputDate') Date
-          input#date.form-control(name='date' type='date')
-        .form-group.col-md-4
-          label(for='inputDays') days
-          input#days.form-control(name='days' type='number')
-      button.btn.btn-success Submit
-
+.container.mt-2
+  h1 Login
+  .row
+    .col-sm-8
+      .card
+        .card-body
+          // Makes POST request to /login route
+          form(action='/login' method='POST')
+            .form-group
+              label(for='email') Email
+              input.form-control(type='email' name='username')
+            .form-group
+              label(for='password') Password
+              input.form-control(type='password' name='password')
+            button.btn.btn-dark(type='submit') Login
     // Optional JavaScript
     // jQuery first, then Popper.js, then Bootstrap JS
     script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous')
     script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN' crossorigin='anonymous')
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV' crossorigin='anonymous')
-    script.
-      function addProperty(){
-        window.location.href = '/property'
-      }
-      function home(){
-        window.location.href='/'
-      }
-     
-     
